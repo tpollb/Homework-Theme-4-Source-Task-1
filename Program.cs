@@ -12,12 +12,11 @@ namespace Homework_Theme_4_Source_Task_1
             int k = 0;
 
             int MinValue = 0;
-            int MaxValue = 500000;
+            int MaxValue = 5;
             int rows = 12;
             int cols = 4;
             int NumberOfProfitMonth = 0;
-            int NumberOfworthMonth = 0;
-
+            
             int[] WorthMonth = new int[rows];
             int[] WorthMonthSorted = new int[rows + 1];
             int[] Profit = new int[rows];
@@ -57,27 +56,40 @@ namespace Homework_Theme_4_Source_Task_1
 
             Console.WriteLine();
             Console.WriteLine($"Количество прибыльных месяцев: {NumberOfProfitMonth}");
+            Console.WriteLine();
 
             //Три худших показателя:
             Console.WriteLine($"Три худших месяца:");
             Array.Sort(WorthMonthSorted);
-                                   
+
+            k = 0;
+
             for (i = 0; i < 3; i++)
             {
                 for (j = 0; j < rows; j++)
                 {
                     if (WorthMonthSorted[i] == Profit[j])
                     {
+                        if (k == 3) break;
                         Console.Write($"{Month[j]}: {WorthMonthSorted[i]}  ");
-                    }
-                    if (WorthMonthSorted[i] == WorthMonthSorted[i + 1])
-                    {
-                        Console.Write($"Месяц {Month[j]} совпадает ");
+                        k++;
                     }
                 }
             }
 
-                Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            for (i = 0; i < rows; i++)
+            {
+                for (j = i + 1; j < rows; j++)
+                {
+                    if (Profit[i] == Profit[j])
+                    {
+                        Console.WriteLine($"Месяц {Month[i]} с прибылью {Profit[i]} равен месяцу {Month[j]} с прибылью {Profit[j]}");
+                    }
+                }
+            }
 
             /*
             //вывод прибыли
